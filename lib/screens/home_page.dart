@@ -41,19 +41,19 @@ class _HomePageState extends State<HomePage> {
                 ),
                 SizedBox(height: 16),
                 Container(
-                  color: Colors.red,
                   width: double.infinity,
-                  height: MediaQuery.of(context).size.height * 0.2,
+                  height: MediaQuery.of(context).size.height * 0.23,
                   child: ListView.builder(
                     shrinkWrap: true,
                     primary: true,
                     physics: const BouncingScrollPhysics(),
-                    scrollDirection: Axis.vertical,
-                    itemCount: widget.clothes.length,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: ClothesModel.clothes.length,
                     itemBuilder: (context, int index) {
                       return Padding(
-                        padding: const EdgeInsets.all(10),
+                        padding: const EdgeInsets.symmetric(horizontal: 5),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
                               width: 140,
@@ -66,13 +66,18 @@ class _HomePageState extends State<HomePage> {
                                     fit: BoxFit.contain),
                               ),
                             ),
+                            SizedBox(height: 4),
                             Text(
                               ClothesModel.clothes[index].name,
                               style: GoogleFonts.openSans(
-                                  fontSize: 15, fontWeight: FontWeight.w500),
+                                  fontSize: 15, fontWeight: FontWeight.w700),
                             ),
-                            Text(ClothesModel.clothes[index].type),
-                            Text(ClothesModel.clothes[index].price.toString()),
+                            Text(
+                              ClothesModel.clothes[index].type,
+                              style: GoogleFonts.openSans(fontSize: 10),
+                            ),
+                            SizedBox(height: 6),
+                            Text('\$ ${ClothesModel.clothes[index].price}'),
                           ],
                         ),
                       );
@@ -89,7 +94,7 @@ class _HomePageState extends State<HomePage> {
                     primary: true,
                     physics: const BouncingScrollPhysics(),
                     scrollDirection: Axis.vertical,
-                    itemCount: widget.clothes.length,
+                    itemCount: ClothesSale.clothes.length,
                     itemBuilder: (context, int index) {
                       return Container(
                         width: 180,
@@ -97,9 +102,43 @@ class _HomePageState extends State<HomePage> {
                         child: Row(
                           children: [
                             Image.asset(ClothesSale.clothes[index].img),
+                            SizedBox(width: 10),
                             Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(ClothesSale.clothes[index].name),
+                                Container(
+                                  width: 160,
+                                  child: Text(
+                                    ClothesSale.clothes[index].name,
+                                    style: GoogleFonts.openSans(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                ),
+                                SizedBox(height: 4),
+                                Text(
+                                  ClothesSale.clothes[index].discount,
+                                  style: GoogleFonts.openSans(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                SizedBox(height: 4),
+                                Text(
+                                  ClothesSale.clothes[index].price,
+                                  style: GoogleFonts.openSans(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                SizedBox(height: 8),
+                                Text(
+                                  'Colour',
+                                  style: GoogleFonts.openSans(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                Row(
+                                  children: [],
+                                ),
                               ],
                             ),
                           ],
